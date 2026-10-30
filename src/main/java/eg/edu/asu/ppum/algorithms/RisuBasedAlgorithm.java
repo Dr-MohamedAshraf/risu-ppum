@@ -18,13 +18,11 @@ import java.util.Map;
  * in how they choose the victim item of each sensitive itemset, so this class runs every other step and asks
  * the subclass for that choice:
  * <ol>
- *   <li>find the sensitive transactions and compute RISU (Line 1, Eq. 2);</li>
- *   <li>choose one victim item for every sensitive itemset ({@link #chooseVictims}; Lines 2-4, or Lines 2-10
- *       in Algorithm 3);</li>
- *   <li>sort the sensitive transactions with Weighted Sorting (Lines 5-8, Eq. 1);</li>
- *   <li>order the sensitive itemsets by decreasing RISU of their victim items ({@link #orderSensitiveItemsets};
- *       Line 9, or Line 15 in Algorithm 3);</li>
- *   <li>hide them one after another (Lines 10-33).</li>
+ *   <li>find the sensitive transactions and compute RISU</li>
+ *   <li>choose one victim item for every sensitive itemset ({@link #chooseVictims}</li>
+ *   <li>sort the sensitive transactions with Weighted Sorting</li>
+ *   <li>order the sensitive itemsets by decreasing RISU of their victim items ({@link #orderSensitiveItemsets}</li>
+ *   <li>hide them one after another </li>
  * </ol>
  * A new RISU-based variant only has to implement {@link #name} and {@link #chooseVictims}. It may also override
  * {@link #orderSensitiveItemsets} to try another processing order.
@@ -93,8 +91,8 @@ public abstract class RisuBasedAlgorithm implements SanitizationAlgorithm {
 
     /**
      * Returns the order in which the sensitive itemsets are hidden, as indices into
-     * {@code problem.sensitiveItemsets()}: by decreasing RISU of their victim items (Line 9, or Line 15 in
-     * Algorithm 3). The sort is stable, so itemsets with equal values keep the order in which they were given.
+     * {@code problem.sensitiveItemsets()}: by decreasing RISU of their victim items.
+     * The sort is stable, so itemsets with equal values keep the order in which they were given.
      * The result must list every index exactly once.
      */
     protected List<Integer> orderSensitiveItemsets(HidingProblem problem, final int[] victims,
