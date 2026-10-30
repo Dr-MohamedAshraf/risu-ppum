@@ -30,7 +30,7 @@ public final class SDIF extends RisuBasedAlgorithm {
     }
 
     /**
-     * Lines 2-10 of Algorithm 3: chooses the most desirable item of each sensitive itemset as its victim.
+     * chooses the most desirable item of each sensitive itemset as its victim.
      */
     @Override
     protected int[] chooseVictims(HidingProblem problem, Map<Integer, Long> risu) {
