@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The hiding procedure, Lines 10-33 of Algorithms 1 and 2 (Lines 16-39 of Algorithm 3). It hides the
- * sensitive itemsets one after another. For a sensitive itemset S, diff = u(S) - minUtil + 1 is the utility
+ * The hiding procedure.
+ * It hides the sensitive itemsets one after another. For a sensitive itemset S, diff = u(S) - minUtil + 1 is the utility
  * that S must lose. The transactions that support S are visited in Weighted Sorting order and, while diff is
  * positive, the victim item of S is changed in each of them:
  * <ul>
@@ -28,7 +28,7 @@ import java.util.Map;
  *       the victim is deleted instead.</li>
  * </ul>
  * After each change, the current utility of every sensitive itemset that contains the victim and is supported
- * by T is lowered by the utility it lost in T ("Update S_j", Lines 19 and 24). That is how hiding one itemset
+ * by T is lowered by the utility it lost in T. That is how hiding one itemset
  * can partly or fully hide the others.
  */
 final class HidingLoop {
@@ -67,7 +67,7 @@ final class HidingLoop {
     }
 
     /**
-     * Hides the sensitive itemsets in the given order (Line 10). For each itemset, the matching entry of
+     * Hides the sensitive itemsets in the given order. For each itemset, the matching entry of
      * supportingTransactions lists the transactions that contain it, in Weighted Sorting order.
      */
     void hide(List<Integer> itemsetOrder, List<List<Integer>> supportingTransactions) {
@@ -77,8 +77,8 @@ final class HidingLoop {
     }
 
     /**
-     * Hides one sensitive itemset (Lines 11-32). It stops as soon as diff is no longer positive (Lines 13 and
-     * 29-30), so an itemset that earlier changes already hid is left alone.
+     * Hides one sensitive itemset. It stops as soon as diff is no longer positive
+     * So an itemset that earlier changes already hid is left alone.
      */
     private void hideItemset(int index, List<Integer> transactions) {
         Itemset itemset = itemsets.get(index);
@@ -109,7 +109,7 @@ final class HidingLoop {
     }
 
     /**
-     * Deletes the victim item from the transaction (Lines 16-19). Every sensitive itemset that contains the
+     * Deletes the victim item from the transaction. Every sensitive itemset that contains the
      * victim and is supported by the transaction loses its whole utility there. Returns u(S, T), the utility
      * that the itemset being hidden had in the transaction.
      */
@@ -123,7 +123,7 @@ final class HidingLoop {
     }
 
     /**
-     * Lowers the quantity of the victim item in the transaction (Lines 21-25). Every sensitive itemset that
+     * Lowers the quantity of the victim item in the transaction. Every sensitive itemset that
      * contains the victim and is supported by the transaction loses decrease times the victim's unit profit.
      */
     private void reduceVictim(Transaction transaction, int victim, int decrease, int unitProfit) {
