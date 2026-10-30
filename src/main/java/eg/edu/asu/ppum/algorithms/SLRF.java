@@ -26,7 +26,7 @@ public final class SLRF extends RisuBasedAlgorithm {
     }
 
     /**
-     * Lines 2-4 of Algorithm 2: the victim of each sensitive itemset is its item with the smallest RISU.
+     * the victim of each sensitive itemset is its item with the smallest RISU.
      */
     @Override
     protected int[] chooseVictims(HidingProblem problem, Map<Integer, Long> risu) {
