@@ -26,7 +26,7 @@ public final class SMRF extends RisuBasedAlgorithm {
     }
 
     /**
-     * Lines 2-4 of Algorithm 1: the victim of each sensitive itemset is its item with the largest RISU.
+     * the victim of each sensitive itemset is its item with the largest RISU.
      */
     @Override
     protected int[] chooseVictims(HidingProblem problem, Map<Integer, Long> risu) {
