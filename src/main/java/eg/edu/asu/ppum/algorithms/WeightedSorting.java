@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Weighted Sorting, Lines 5-8 of Algorithms 1-3 (Definitions 9-13, Eq. 1). Every sensitive transaction T gets
+ * Weighted Sorting (Definitions 9-13, Eq. 1). Every sensitive transaction T gets
  * the weight Wt(T) = SC(T) / (NSC(T) + 1), where SC(T) is the number of sensitive itemsets and NSC(T) the
  * number of non-sensitive high-utility itemsets that T contains. The transactions are then visited in
  * decreasing order of weight, so those that support many sensitive itemsets and few non-sensitive ones are
