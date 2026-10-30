@@ -1,6 +1,6 @@
-# RISU-PPUM: SMRF, SLRF and SDIF
+# RISU-PPUM: SMRF, SLRF, and SDIF algorithms
 
-Official implementation of the three privacy preserving utility mining (PPUM) algorithms of the article
+Official implementation of the three privacy-preserving utility mining (PPUM) algorithms of the article
 
 > Mohamed Ashraf, Sherine Rady, Tamer Abdelkader, Tarek F. Gharib.
 > **Efficient privacy preserving algorithms for hiding sensitive high utility itemsets.**
@@ -8,12 +8,12 @@ Official implementation of the three privacy preserving utility mining (PPUM) al
 
 Given a quantitative transaction database, the unit profits of its items, a minimum utility threshold and the
 sensitive high-utility itemsets to protect, each algorithm changes the database so that none of the sensitive
-itemsets is a high-utility itemset any more, while trying to keep the other high-utility itemsets. The three
+itemsets is a high-utility itemset anymore, while trying to keep the other high-utility itemsets. The three
 algorithms share two ideas of the article:
 
 - **Real Item Sensitive Utility (RISU, Eq. 2).** The RISU of an item is its total utility in the transactions
   that contain a sensitive itemset. It is used to give every sensitive itemset one definite victim item before
-  the hiding starts.
+  the hiding starts and can be easily adapted to the other HUPM extensions.
 - **Weighted Sorting (Eq. 1).** The sensitive transactions are sorted by SC(T) / (NSC(T) + 1), so the
   transactions that support many sensitive and few non-sensitive itemsets are changed first.
 
@@ -25,9 +25,9 @@ They differ in the choice of the victim item:
 | **SLRF** (Algorithm 2) | the item with the smallest RISU |
 | **SDIF** (Algorithm 3) | the most desirable item, with the largest sensitive cover and the smallest non-sensitive cover; otherwise the item with the smallest non-sensitive cover; ties go to the smallest RISU |
 
-The repository is also a small framework for comparing PPUM algorithms. Every algorithm runs on its own copy of
+The repository also serves as a small framework for comparing PPUM algorithms. Every algorithm runs on its own copy of
 the same inputs and is measured in the same way: hiding failure, artificial cost, missing cost, itemset utility
-similarity, dataset utility similarity, transaction modification ratio, runtime and peak memory. Adding your own
+similarity, dataset utility similarity, transaction modification ratio, runtime, and peak memory. Adding your own
 algorithm takes one class.
 
 ## Contents
@@ -70,7 +70,7 @@ algorithm and a comparison at the end. Runtime and memory vary from machine to m
 
 ```text
 SDIF
-  Hiding failure (HF)                        0.00 %   0 of 3 sensitive itemsets still high-utility
+  Hiding failure (HF)                        0.00 %   0 of 3 sensitive itemsets are still high-utility
   Artificial cost (AC)                       0.00 %   only deletions and decreases, so no new high-utility itemsets
   Missing cost (MC)                          0.00 %   0 of 4 non-sensitive high-utility itemsets lost
   Itemset utility similarity (IUS)          53.40 %
@@ -102,7 +102,7 @@ From an IDE, open the folder as a Maven project (or add `src/main/java` as a sou
    java -jar target/risu-ppum-1.0.0.jar --db data.txt --profits profits.txt --min-util 21% --export-spmf data_spmf.txt
    ```
 
-   For example, with EFIM from the [SPMF library](https://www.philippe-fournier-viger.com/spmf/), using the
+   For example, with the EFIM algorithm from the [SPMF library](https://www.philippe-fournier-viger.com/spmf/), using the
    threshold printed by the previous command:
 
    ```sh
@@ -304,27 +304,13 @@ can be run one after another on the same experiment.
 
 ## How the code follows the article
 
-| Article | Code |
-|---|---|
-| Line 1, Eq. 2: sensitive transactions and RISU | `algorithms/RisuCalculator` |
-| Lines 2-4 (Algorithm 3: Lines 2-10): victim items | `algorithms/SMRF`, `SLRF`, `SDIF` (with `ItemCovers` for SC and NSC) |
-| Lines 5-8, Eq. 1: Weighted Sorting | `algorithms/WeightedSorting` |
-| Line 9 (Algorithm 3: Line 15): order of the sensitive itemsets | `RisuBasedAlgorithm.orderSensitiveItemsets` |
-| Lines 10-33 (Algorithm 3: Lines 16-39): hiding | `algorithms/HidingLoop` |
-| The order of the steps | `algorithms/RisuBasedAlgorithm` |
-| Eqs. 3-8 and the runtime | `evaluation/SideEffects`, `Experiment.run` |
-| Definitions 1-4: utilities | `data/Transaction`, `data/Itemset` |
-
-[`docs/PAPER_TO_CODE.md`](docs/PAPER_TO_CODE.md) maps every definition, equation and line of Algorithms 1-3 to the
-code, explains the choices the article leaves open, and works through the example of Section 5.
-
-The source code is organised in four packages under `src/main/java/eg/edu/asu/ppum`:
+The source code is organized in four packages under `src/main/java/eg/edu/asu/ppum`:
 
 | Package | Classes |
 |---|---|
 | `eg.edu.asu.ppum` | `Runner` (settings, command line, reports, result files) and `Experiment` (checked inputs, sensitive itemsets, measured runs) |
 | `algorithms` | `SanitizationAlgorithm`, `HidingProblem`, `Algorithms`, `RisuBasedAlgorithm`, `SMRF`, `SLRF`, `SDIF` and the steps they share |
-| `data` | the database, transactions, unit profits, itemsets, their file formats and a prefix tree for fast itemset look-ups |
+| `data` | the database, transactions, unit profits, itemsets, their file formats, and a prefix tree for fast itemset look-ups |
 | `evaluation` | `SideEffects` (the metrics), `MemoryMonitor` and `RunResult` |
 
 ## Citation
