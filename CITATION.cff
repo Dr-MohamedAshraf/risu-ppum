@@ -1,0 +1,65 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the article in preferred-citation."
+title: "RISU-PPUM: SMRF, SLRF and SDIF for hiding sensitive high-utility itemsets"
+abstract: >-
+  Official implementation of the SMRF, SLRF and SDIF privacy preserving utility mining algorithms, which hide
+  sensitive high-utility itemsets using the Real Item Sensitive Utility (RISU) of the sensitive items and the
+  Weighted Sorting of the sensitive transactions, with a framework that runs and measures sanitization algorithms
+  on the same inputs.
+type: software
+authors:
+  - family-names: Ashraf
+    given-names: Mohamed
+    email: Mohamed.a.a.h.is@gmail.com
+    affiliation: "Information Systems Department, Faculty of Computer and Information Sciences, Ain Shams University, Cairo, Egypt"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"
+version: 1.0.0
+# Fill in when the release is published:
+# date-released: "YYYY-MM-DD"
+# repository-code: "https://github.com/<account>/risu-ppum"
+# doi: "10.5281/zenodo.<record>"
+license: GPL-3.0-only
+keywords:
+  - privacy preserving utility mining
+  - PPUM
+  - high-utility itemset mining
+  - sensitive itemset hiding
+  - data sanitization
+preferred-citation:
+  type: article
+  title: "Efficient privacy preserving algorithms for hiding sensitive high utility itemsets"
+  authors:
+    - family-names: Ashraf
+      given-names: Mohamed
+    - family-names: Rady
+      given-names: Sherine
+    - family-names: Abdelkader
+      given-names: Tamer
+    - family-names: Gharib
+      given-names: Tarek F.
+  journal: "Computers & Security"
+  volume: 132
+  start: 103360
+  year: 2023
+  publisher:
+    name: Elsevier
+  doi: "10.1016/j.cose.2023.103360"
+references:
+  - type: conference-paper
+    title: "PPSF: an open-source privacy-preserving and security mining framework"
+    authors:
+      - family-names: Lin
+        given-names: Jerry Chun-Wei
+      - family-names: Fournier-Viger
+        given-names: Philippe
+      - family-names: Wu
+        given-names: Lintai
+      - family-names: Gan
+        given-names: Wensheng
+      - family-names: Djenouri
+        given-names: Youcef
+      - family-names: Zhang
+        given-names: Ji
+    collection-title: "2018 IEEE International Conference on Data Mining Workshops (ICDMW)"
+    year: 2018
+    doi: "10.1109/ICDMW.2018.00208"
